@@ -174,7 +174,26 @@ lotr_df <-
 ```
 
 
+Turn this into a function.
 
+```{r}
+lotr_import <- function(cell_range, movie_title) {
+  
+  df = read_excel("data/LotR_Words.xlsx", range = cell_range) %>% 
+  mutate(movie = movie_title)
+  
+  df
+  
+}
+```
+
+```{r}
+fellowship <- lotr_import(cell_range = "B3:D6", movie_title = "Fellowship")
+two_towers <- lotr_import(cell_range = "F3:H6", movie_title = "Two Towers")
+return_of_the_king <- lotr_import(cell_range = "J3:L6", movie_title = "Return of the King")
+
+bind_rows(fellowship, two_towers, return_of_the_king)
+```
 
 
 
